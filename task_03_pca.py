@@ -4,6 +4,7 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 
 image_metadata = r"data\21_03_2022_clipped\LC08_L1TP_192025_20220321_20220329_02_T1_MTL.txt"
 data_dir = r"data\21_03_2022_clipped"
@@ -42,9 +43,8 @@ def create_rgb_image(calib_bands):
 
 def aprox_reshape(data): #entering (70756, 3)
     shaped_list = []
-    for i in range(3):
+    for i in range(2,-1, -1):
         reshaped = data[i].reshape(266,266)
-        print(reshaped.shape)
         shaped_list.append(scale_vals(reshaped))
     return np.dstack(shaped_list)
 
@@ -60,11 +60,13 @@ flat_upscaled = np.stack(flatten(upscaled_rgb, rgb))
 print(f"flat_upscaled: {flat_upscaled.shape}")
 
 flat_upscaled_t = flat_upscaled.T #PCA needs pixels x bands
+scaler = StandardScaler() #Scaler shouldnt be neccesary here (high data similarity across bands and radiometric correction), but it is good practice
+data = scaler.fit_transform(flat_upscaled_t)
 
 print(f"flat_upscaled_t: {flat_upscaled_t.shape}")
 
 pca = PCA() #create PCA instance
-lower_dimensional_data = pca.fit_transform(flat_upscaled_t)
+lower_dimensional_data = pca.fit_transform(data)
 print(f"lower_dimensional_data: {lower_dimensional_data.shape}")
 print(f"pca components: {pca.n_components_}")
 approximation = pca.inverse_transform(lower_dimensional_data)
