@@ -1,4 +1,5 @@
 from task_01 import parse_metadata, radiometric_correction
+from task_02 import create_rgb_image
 import numpy as np
 import os
 import matplotlib.pyplot as plt
@@ -46,7 +47,8 @@ if __name__ == '__main__':
     plt.figure(figsize=(12, 6))
 
     plt.subplot(1, 2, 1)
-    plt.imshow(scaled_original)
+    original_img = create_rgb_image(calibrated_bands)
+    plt.imshow(original_img)
     plt.title("Original RGB Image")
     plt.axis('off')
     plt.subplot(1, 2, 2)
