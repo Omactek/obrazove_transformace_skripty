@@ -10,9 +10,6 @@ __pycache__/
 # Data dir
 data/
 
-# WIP
-task_03_pca.py
-
 # C extensions
 *.so
 
