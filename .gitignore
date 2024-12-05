@@ -10,8 +10,8 @@ __pycache__/
 # Data dir
 data/
 
-# Training code
-zk.py
+# Temp
+tempCodeRunnerFile.py
 
 # C extensions
 *.so

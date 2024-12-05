@@ -56,4 +56,4 @@ if __name__ == '__main__':
     plt.title("Brovey Pansharpened Image")
     plt.axis('off')
     plt.tight_layout()
-    plt.savefig("Brovey.png", dpi=300, bbox_inches='tight')
+    plt.savefig("brovey_pansharpened.png", dpi=300, bbox_inches='tight')
