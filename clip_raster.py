@@ -2,9 +2,9 @@ import rasterio
 from rasterio.windows import Window
 import os
 
-image_dir = r"data\21_03_2022"
+image_dir = r"data\05_08_2022"
 clip_file = r"data\clip_area.shp"
-output_dir = r"data\21_03_2022_clipped"
+output_dir = r"data\05_08_2022_clipped"
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)

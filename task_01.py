@@ -52,14 +52,22 @@ def cap_transformation(cbd): #input: calibrated band dictionary
     wetness	= (0.0000*cbd[1] + 0.1511*cbd[2] + 0.1973*cbd[3] + 0.3283*cbd[4] + 0.3407*cbd[5] - 0.7117*cbd[6] - 0.4559*cbd[7])
     return brigthness, greenness, wetness
 
-def create_hexbin_plot(x_axis, y_axis, name, gridsize=50, cmap="viridis"):
+def format_date(date):
+    year = date[:4]
+    month = date[4:6]
+    day = date[6:]
+    formatted_date = f"{day:02}.{month:02}.{year}"
+    return formatted_date
+
+def create_hexbin_plot(x_axis, y_axis, date, gridsize=50, cmap="viridis"):
+    formated_date = format_date(date)
     plt.figure(figsize=(8, 6))
     hb = plt.hexbin(x_axis, y_axis, gridsize=gridsize, cmap=cmap, mincnt=1)
     plt.colorbar(hb, label="Counts per Bin")
-    plt.title("Brightness vs Greenness")
+    plt.title(f"Brightness vs Greenness {formated_date}")
     plt.xlabel("Brightness")
     plt.ylabel("Greenness")
-    plt.savefig(name, dpi=300, bbox_inches="tight")
+    plt.savefig(date, dpi=300, bbox_inches="tight")
 
 def procces_image(metadata_image):
     data_folder = os.path.dirname(metadata_image)
