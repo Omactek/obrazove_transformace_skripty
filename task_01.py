@@ -71,7 +71,7 @@ def create_hexbin_plot(x_axis, y_axis, date, gridsize=50, cmap="viridis"):
 
 def procces_image(metadata_image):
     data_folder = os.path.dirname(metadata_image)
-    acquisition_date = os.path.basename(metadata_image).split("_")[4]
+    acquisition_date = os.path.basename(metadata_image).split("_")[3]
     bands, reflect_mult, reflect_add, sun_el = parse_metadata(metadata_image, 1, 7)
     calibrated_bands = radiometric_correction(bands, reflect_mult, reflect_add, sun_el, data_folder,1,7)
     brightness, greenness, wetness = cap_transformation(calibrated_bands)
